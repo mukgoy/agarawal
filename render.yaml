@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: agrawal-backend
+    runtime: node
+    rootDir: agrawal-backend
+    buildCommand: npm install
+    startCommand: npm start
+  - type: web
+    name: agrawal-frontend
+    runtime: node
+    rootDir: agrawal-frontend
+    buildCommand: npm install
+    startCommand: npm start
