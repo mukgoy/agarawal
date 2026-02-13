@@ -1,0 +1,5 @@
+/agrawal-backend/dist
+/agrawal-backend/node_modules
+/agrawal-frontend/.angular/cache
+/agrawal-frontend/node_modules
+/agrawal-frontend/.vscode

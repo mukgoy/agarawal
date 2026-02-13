@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-12">
+        <h2>Users List</h2>
+        <p>Below is a list of users with their details.</p>
+    </div>
+
+
+
+    <div class="mat-elevation-z8">
+        <div class="col-12">
+            <div class="d-flex flex-wrap justify-content-between justify-content-center">
+                <div class="mx-auto mx-md-0">
+                    <div class="d-flex flex-nowrap flex-fill pt-4">
+                        <button mat-raised-button class="mx-1 text-nowrap" (click)="addEditUser({})">Add data</button>
+                        <!-- <button mat-raised-button class="mx-1 text-nowrap">Remove data</button> -->
+                    </div>
+                </div>
+                <div class="mx-auto mx-md-0">
+                    <div class="pt-3" style="min-width: 200px;">
+                        <mat-form-field>
+                            <mat-label>Search</mat-label>
+                            <input matInput (keyup)="userList.applyFilter(input.value)" placeholder="Search" #input>
+                        </mat-form-field>
+                    </div>
+                </div>
+              </div>
+            <app-table [dataMap]="dataMap" [dataArr]="dataArr" #userList>
+                <ng-template #actionsItems let-row>
+                    <button mat-icon-button aria-label="expand row" (click)="addEditUser(row); $event.stopPropagation()">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="expand row" (click)="deleteUser(row); $event.stopPropagation()">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="expand row"
+                        (click)="(row.isExpanded = !row.isExpanded); $event.stopPropagation()">
+                        <mat-icon *ngIf="!row.isExpanded">keyboard_arrow_down</mat-icon>
+                        <mat-icon *ngIf="row.isExpanded">keyboard_arrow_up</mat-icon>
+                    </button>
+                </ng-template>
+
+                <ng-template #expandedView let-row>
+                    <div class="example-element-diagram">
+                        <!-- {{row|json}} -->
+                        <mat-list class="d-flex">
+                            <mat-list-item>
+                                <span matListItemTitle>Lagacy Address</span>
+                                <span matListItemLine>{{row.address.legacy.village}}</span>
+                                <span matListItemLine>{{row.address.legacy.tehsil}}</span>
+                                <span matListItemLine>{{row.address.legacy.district}}</span>
+                                <span matListItemLine>{{row.address.legacy.postOffice}}</span>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <span matListItemTitle>Current Address</span>
+                                <span matListItemLine>{{row.address.current.houseNo}}</span>
+                                <span matListItemLine>{{row.address.current.street}}</span>
+                                <span matListItemLine>{{row.address.current.district}}</span>
+                                <span matListItemLine>{{row.address.current.postOffice}}</span>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </ng-template>
+
+            </app-table>
+        </div>
+    </div>
+
+</div>

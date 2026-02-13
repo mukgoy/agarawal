@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>User Details</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="container">
+        <app-form-builder [formFields]="formFields" [(formGroup)]="userForm"></app-form-builder>
+
+        <h3 class="mt-4">Legacy Address</h3>
+        <app-form-builder [formFields]="legacyFields" [(formGroup)]="legacyForm"></app-form-builder>
+
+        <h3 class="mt-4">Current Address</h3>
+        <app-form-builder [formFields]="currentFields" [(formGroup)]="currentForm"></app-form-builder>
+
+    </div>
+    <!-- {{userForm.valid | json}}
+    {{legacyForm.valid | json}}
+    {{currentForm.valid | json}}
+    {{data | json}} -->
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="submit()" [disabled]="!(userForm.valid && legacyForm.valid && currentForm.valid)">Submit</button>
+</mat-dialog-actions>

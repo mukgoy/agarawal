@@ -1,0 +1,69 @@
+<mat-form-field appearance="fill" class="w-100 form-field" [formGroup]="formGroup" [class.mat-form-field-invalid]="haserror()" *ngIf="type == 'text'">
+    <mat-label>{{title}}</mat-label>
+    <input matInput [placeholder]="placeholder" [readonly]="readonly" [formControlName]="controlName">
+    <mat-error *ngIf="haserror() && control.errors.required">This field is required</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.unique">{{control.errors.unique}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.lessThen">{{control.errors.lessThen}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.greaterThan">{{control.errors.greaterThan}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.email">invalid email</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.invalidEmailAddress">invalid email</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.mobile">{{control.errors.mobile}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.confirmPassword">{{control.errors.confirmPassword}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors?.maxlength?.requiredLength">max length is {{control.errors.maxlength.requiredLength}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors?.min">min value to be {{control.errors.min.min}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors?.max">max value to be {{control.errors.max.max}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors?.invalidNumber">Only number {{control.errors?.limit ? "with "+control.errors?.limit+" decimal":""}} is allowed</mat-error>
+    <mat-error *ngIf="haserror() && control.errors?.errorText">{{control.errors?.errorText}}</mat-error>
+
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="w-100 form-field" [formGroup]="formGroup" [class.mat-form-field-invalid]="haserror()" *ngIf="type == 'select'">
+    <mat-label>{{title}}</mat-label>
+    <mat-select [placeholder]="placeholder" [formControlName]="controlName" [multiple]="multiple">
+      <mat-option *ngFor="let x of data" [value]="x.value">
+        {{x.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="haserror() && control.errors.required">This field is required</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.unique">{{control.errors.unique}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.lessThen">{{control.errors.lessThen}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.greaterThan">{{control.errors.greaterThan}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.email">{{control.errors.email}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.mobile">{{control.errors.mobile}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.confirmPassword">{{control.errors.confirmPassword}}</mat-error>
+</mat-form-field>
+
+<mat-form-field class="w-100 mat-date d-flex form-field" [formGroup]="formGroup" [class.mat-form-field-invalid]="haserror()" *ngIf="type == 'date'">
+    <mat-label>{{title}}</mat-label>
+    <input class="w-100" matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [placeholder]="placeholder" [formControlName]="controlName" (dateInput)="DateChange('input', $event)">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="haserror() && control.errors.required">This field is required</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.unique">{{control.errors.unique}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.lessThen">{{control.errors.lessThen}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.greaterThan">{{control.errors.greaterThan}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.email">{{control.errors.email}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.mobile">{{control.errors.mobile}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.confirmPassword">{{control.errors.confirmPassword}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.invalidDate">{{control.errors.invalidDate}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors.dateNoMoreThan">{{control.errors.dateNoMoreThan}}</mat-error>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="w-100 form-field" [formGroup]="formGroup" [class.mat-form-field-invalid]="haserror()" *ngIf="type == 'textarea'">
+  <mat-label>{{title}}</mat-label>
+  <textarea matInput [placeholder]="placeholder" [readonly]="readonly" [formControlName]="controlName"></textarea>
+  <mat-error *ngIf="haserror() && control.errors.required">This field is required</mat-error>
+  <mat-error *ngIf="haserror() && control.errors.unique">{{control.errors.unique}}</mat-error>
+  <mat-error *ngIf="haserror() && control.errors.lessThen">{{control.errors.lessThen}}</mat-error>
+  <mat-error *ngIf="haserror() && control.errors.greaterThan">{{control.errors.greaterThan}}</mat-error>
+  <mat-error *ngIf="haserror() && control.errors.email">invalid email</mat-error>
+  <mat-error *ngIf="haserror() && control.errors.invalidEmailAddress">invalid email</mat-error>
+  <mat-error *ngIf="haserror() && control.errors.mobile">{{control.errors.mobile}}</mat-error>
+  <mat-error *ngIf="haserror() && control.errors.confirmPassword">{{control.errors.confirmPassword}}</mat-error>
+  <mat-error *ngIf="haserror() && control.errors?.maxlength?.requiredLength">max length is {{control.errors.maxlength.requiredLength}}</mat-error>
+  <mat-error *ngIf="haserror() && control.errors?.minlength?.requiredLength">min length is {{control.errors.minlength.requiredLength}}</mat-error>
+  <mat-error *ngIf="haserror() && control.errors?.min">min value to be {{control.errors.min.min}}</mat-error>
+  <mat-error *ngIf="haserror() && control.errors?.max">max value to be {{control.errors.max.max}}</mat-error>
+
+</mat-form-field>
