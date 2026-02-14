@@ -1,3 +1,6 @@
+process.env.GOOGLE_CLIENT_ID = "26042621815-5q4gpnoeoeqmt3mq858b664oenj42p9d.apps.googleusercontent.com";
+process.env.JWT_SECRET = "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"
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
