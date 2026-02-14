@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -12,21 +12,21 @@ import { UserService } from 'src/app/services/user.service';
 export class UserComponent {
 
   formFields = [
-    { name: '_id', label: 'ID', type: 'text', required: false, space: 0 },
-    { name: 'name', label: 'Name', type: 'text', required: true, space: 2 },
-    { name: 'phone', label: 'Phone', type: 'text', required: true, space: 2 },
+    { name: '_id', label: 'ID', type: 'text', space: 0 },
+    { name: 'name', label: 'Name', type: 'text', space: 2, validators: [Validators.required]},
+    { name: 'phone', label: 'Phone', type: 'text', space: 2, validators: [Validators.required]},
   ];
   legacyFields = [
-    { name: 'village', label: 'Village', type: 'text', required: false, space: 2 },
-    { name: 'tehsil', label: 'Tehsil', type: 'text', required: true, space: 2 },
-    { name: 'district', label: 'District', type: 'text', required: true, space: 2 },
-    { name: 'postOffice', label: 'Post Office', type: 'text', required: false, space: 2 },
+    { name: 'village', label: 'Village', type: 'text', space: 2 },
+    { name: 'tehsil', label: 'Tehsil', type: 'text', space: 2, validators: [Validators.required]},
+    { name: 'district', label: 'District', type: 'text', space: 2, validators: [Validators.required]},
+    { name: 'postOffice', label: 'Post Office', type: 'text', space: 2 },
   ];
   currentFields = [
-    { name: 'houseNo', label: 'HouseNo', type: 'text', required: false, space: 2 },
-    { name: 'street', label: 'Street', type: 'text', required: true, space: 2 },
-    { name: 'district', label: 'District', type: 'text', required: true, space: 2 },
-    { name: 'postOffice', label: 'Post Office', type: 'text', required: false, space: 2 },
+    { name: 'houseNo', label: 'HouseNo', type: 'text', space: 2 },
+    { name: 'street', label: 'Street', type: 'text', space: 2, validators: [Validators.required]},
+    { name: 'district', label: 'District', type: 'text', space: 2, validators: [Validators.required]},
+    { name: 'postOffice', label: 'Post Office', type: 'text', space: 2 },
   ];
 
   userForm: FormGroup = new FormGroup({});

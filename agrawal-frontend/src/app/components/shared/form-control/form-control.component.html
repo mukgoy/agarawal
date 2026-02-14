@@ -14,6 +14,7 @@
     <mat-error *ngIf="haserror() && control.errors?.max">max value to be {{control.errors.max.max}}</mat-error>
     <mat-error *ngIf="haserror() && control.errors?.invalidNumber">Only number {{control.errors?.limit ? "with "+control.errors?.limit+" decimal":""}} is allowed</mat-error>
     <mat-error *ngIf="haserror() && control.errors?.errorText">{{control.errors?.errorText}}</mat-error>
+    <mat-error *ngIf="haserror() && control.errors?.invalidPhoneNumber">{{control.errors?.invalidPhoneNumber}}</mat-error>
 
 </mat-form-field>
 

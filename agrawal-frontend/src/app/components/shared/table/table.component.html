@@ -1,6 +1,6 @@
 <div>
     <!-- {{this.dataArr[0] | json}} -->
-    <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+    <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="overflow-auto w-100 d-block">
         <!-- ID Column -->
         <ng-container [matColumnDef]="key" *ngFor="let key of displayedColumns">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> {{key}} </th>

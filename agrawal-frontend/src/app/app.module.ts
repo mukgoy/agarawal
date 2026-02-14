@@ -28,10 +28,27 @@ import { ConfirmComponent } from './components/dialogs/confirm/confirm.component
 import { FormControlComponent } from './components/shared/form-control/form-control.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilderComponent } from './components/shared/form-builder/form-builder.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/pages/auth/login/login.component';
 import { SignupComponent } from './components/pages/auth/signup/signup.component';
 import { UsersListComponent } from './components/pages/users/users-list/users-list.component';
+import { JwtInterceptor } from './interceptors';
+
+
+const matModules = [
+  MatButtonModule,
+  MatSelectModule,
+  MatFormFieldModule, 
+  MatInputModule, 
+  MatDatepickerModule,
+  MatTableModule, 
+  MatPaginatorModule, 
+  MatSortModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatListModule,
+  MatDialogModule,
+];
 
 @NgModule({
   declarations: [
@@ -59,24 +76,12 @@ import { UsersListComponent } from './components/pages/users/users-list/users-li
     ReactiveFormsModule,
     HttpClientModule,
 
-
-    MatButtonModule,
-    MatSelectModule,
-    MatFormFieldModule, 
-    MatInputModule, 
-    MatDatepickerModule,
-    MatTableModule, 
-    MatPaginatorModule, 
-    MatSortModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatDialogModule,
-
-
-
+    ...matModules
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

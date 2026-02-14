@@ -9,7 +9,7 @@ import { FormControlType } from '../form-control/form-control.component';
 })
 export class FormBuilderComponent {
 
-  @Input() formFields: Array<{ name: string, label: string, type: string, required: boolean, space:number }> = [];
+  @Input() formFields: Array<{ name: string, label: string, type: string, space:number, validators?:any[] }> = [];
 
   @Input() formGroup: FormGroup = {} as FormGroup;
   @Output() formGroupChange = new EventEmitter<FormGroup>();
@@ -24,7 +24,7 @@ export class FormBuilderComponent {
   buildForm(): FormGroup {
     const group: any = {};
     this.formFields.forEach(field => {
-      group[field.name] = field.required ? ['', Validators.required] : [''];
+      group[field.name] = field.validators ? ['', field.validators] : [''];
     });
     return this.fb.group(group);
   }

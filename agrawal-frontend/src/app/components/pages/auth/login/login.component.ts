@@ -1,6 +1,8 @@
-import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { Component, NgZone } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { ValidationService } from 'src/app/services/validation.service';
 
 declare var google: any;
 @Component({
@@ -10,8 +12,17 @@ declare var google: any;
 })
 export class LoginComponent {
 
+  isShowPhoneLogin: boolean = false;
+  formFields = [
+    { name: 'phone', label: 'Phone', type: 'text', required: true, space: 1, validators: [Validators.required, ValidationService.phoneValidator] },
+  ];
+  phoneLoginForm: FormGroup = new FormGroup({});
 
-  constructor(private zone: NgZone) {}
+  constructor(
+    private zone: NgZone,
+    public router: Router,
+    private authService: AuthService,
+  ) { }
 
   ngOnInit(): void {
     google.accounts.id.initialize({
@@ -28,21 +39,56 @@ export class LoginComponent {
     this.renderButton();
   }
 
-  handleCredentialResponse(response: any) {
-    console.log('JWT Token:', response.credential);
-
-    // 👉 Backend को भेजो
-    // this.authService.loginWithGoogle(response.credential);
-  }
-
-  renderButton(){
+  renderButton() {
     google.accounts.id.renderButton(
       document.getElementById("googleBtn"),
       {
         theme: "outline",
         size: "large"
       }
-    );    
+    );
   }
 
+  handleCredentialResponse(response: any) {
+    console.log('JWT Token:', response.credential);
+    this.authService.googleLogin(response.credential).subscribe({
+      next: (response: any) => {
+        console.log('Login successful:', response);
+        if (!response.user.phone) {
+          this.isShowPhoneLogin = true;
+        }else{
+          this.redirectAfterLogin();
+        }
+      },
+      error: (error) => {
+        console.error('Login failed:', error);
+      }
+    });
+  }
+
+  updatePhone() {
+    if (this.phoneLoginForm.valid) {
+      const phone = this.phoneLoginForm.get('phone')?.value;
+      this.authService.updatePhone(phone).subscribe({
+        next: (response: any) => {
+          console.log('Phone updated successfully:', response);
+          this.redirectAfterLogin();
+        },
+        error: (error) => {
+          console.error('Failed to update phone:', error);
+        }
+      });
+    }
+  }
+
+  redirectAfterLogin() {
+    // Implement your redirection logic here, e.g., navigate to the dashboard
+    let redirectUrl = localStorage.getItem('afterlogin-redirect-url');
+    localStorage.removeItem('afterlogin-redirect-url');
+    if (redirectUrl) {
+      window.location.href = redirectUrl;
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
 }
