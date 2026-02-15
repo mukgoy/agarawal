@@ -34,12 +34,19 @@ export class AuthService {
   }
 
   updatePhone(phone: string) {
-    return this.http.post('v1/auth/updatePhone', { ...this._auth.user, phone });
+    return this.http.post('v1/auth/updatePhone', { ...this._auth.user, phone }).pipe(
+      tap(() => {
+        this._auth.user.phone = phone;
+        return this.setAuth(this._auth);
+      })
+    );
   }
 
   isLoggedIn(): boolean {
     const token = this._auth.token;
+    const phone = this._auth.user?.phone;
     if(!token) return false;
+    if(!phone) return false;
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     return new Date().getTime() < expiry*1000;
   }

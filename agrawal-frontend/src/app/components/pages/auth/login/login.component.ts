@@ -25,6 +25,15 @@ export class LoginComponent {
   ) { }
 
   ngOnInit(): void {
+    this.initGoogleLogin();
+    this.checkIsShowPhoneLogin();
+  }
+
+  initGoogleLogin() {
+    this.oneTapPopup();
+    this.renderGoogleButton();
+  }
+  oneTapPopup(){
     google.accounts.id.initialize({
       client_id: '26042621815-5q4gpnoeoeqmt3mq858b664oenj42p9d.apps.googleusercontent.com',
       callback: (response: any) => {
@@ -33,13 +42,10 @@ export class LoginComponent {
         });
       }
     });
-
-    // One Tap popup
     google.accounts.id.prompt();
-    this.renderButton();
-  }
 
-  renderButton() {
+  }
+  renderGoogleButton() {
     google.accounts.id.renderButton(
       document.getElementById("googleBtn"),
       {
@@ -78,6 +84,16 @@ export class LoginComponent {
           console.error('Failed to update phone:', error);
         }
       });
+    }
+  }
+
+  checkIsShowPhoneLogin(){
+    if(this.authService.getAuth().token){
+      if(this.authService.getAuth().user?.phone){
+        this.isShowPhoneLogin = false;
+      }else{
+        this.isShowPhoneLogin = true;
+      }
     }
   }
 
