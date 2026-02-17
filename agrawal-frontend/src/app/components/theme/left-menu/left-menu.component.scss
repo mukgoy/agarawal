@@ -3,3 +3,10 @@
     height: calc(100vh - 3.95rem);
     // top: 3.95rem;
 }
+
+.active{
+    background: rgba(63,81,181,.15);
+    .link-color{
+        color: #3f51b5 !important;
+    }
+}

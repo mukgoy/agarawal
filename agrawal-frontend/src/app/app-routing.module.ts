@@ -22,8 +22,12 @@ const routes: Routes = [
     component: LayoutComponent, 
     canActivate: [AuthGuard],
     children: [
-      { path: 'users', component: UsersListComponent },
-      { path: '**', component: UsersListComponent }
+      { path: 'my-profile', component: UsersListComponent },
+      { path: 'shaadi-profiles', component: UsersListComponent },
+      { path: 'members', component: UsersListComponent },
+      { path: 'my-hostels', component: UsersListComponent },
+      { path: 'events', component: UsersListComponent },
+      { path: '**', redirectTo: 'members' }
     ]
   }
 ];
