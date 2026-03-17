@@ -24,8 +24,8 @@ export class TableComponent {
   @ContentChild('expandedView') expandedView!: TemplateRef<any>;
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource(this.dataArr);
-  displayedColumns: string[] = Object.keys(this.dataMap);
-  columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
+  displayedColumns: string[] = [];
+  columnsToDisplayWithExpand:string[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatSort) sort: MatSort | undefined;
@@ -36,13 +36,15 @@ export class TableComponent {
   ngOnChanges() {
     const mappedData = this.dataMapping(this.dataArr);
     this.dataSource = new MatTableDataSource(mappedData);
-    this.displayedColumns = Object.keys(this.dataMap);
-    this.columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
-  }
-
-  ngAfterViewInit() {
     this.dataSource.paginator = this.paginator!;
     this.dataSource.sort = this.sort!;
+
+    this.displayedColumns = Object.keys(this.dataMap);
+    if(!!this.actionsItems){
+      this.columnsToDisplayWithExpand = [...this.displayedColumns, 'actionsItems'];
+    }else{
+      this.columnsToDisplayWithExpand = [...this.displayedColumns];
+    }
   }
 
   getValueFromObject(obj: any, key: string): any {
@@ -51,12 +53,11 @@ export class TableComponent {
 
   dataMapping(data: any[]) {
     return data.map(element => {
-      const mappedData = Object.keys(this.dataMap)
-        .reduce((acc, key) => {
-          acc[key] = this.getValueFromObject(element, this.dataMap[key]);
-          return acc;
-        }, {} as any);
-      return { ...element, ...mappedData, isExpanded:false };
+      Object.keys(this.dataMap).forEach((key) => {
+          element[key] = this.getValueFromObject(element, this.dataMap[key]);
+      }, {} as any);
+      element.isExpanded =false;
+      return element;
     });
   }
 
