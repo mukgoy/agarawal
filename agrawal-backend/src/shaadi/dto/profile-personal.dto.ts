@@ -9,6 +9,12 @@ export class ProfilePersonalDto {
   @ApiProperty({ description: 'Last Name', example: 'Goyal' })
   lname = '';
 
+  @ApiProperty({ description: 'Gender', example: 'Male' })
+  gender = '';
+
+  @ApiProperty({ description: 'Rashi', example: 'Aries ( मेष )' })
+  rashi = '';
+
   @ApiProperty({ description: 'Date of Birth', example: '01/01/1990' })
   dob = '';
 

@@ -18,4 +18,7 @@ export class CreateShaadiProfileDto {
 
     @ApiProperty({ description: 'contact details of a candidate', type: ProfileContactDto })
     contact: ProfileContactDto;
+
+    @ApiProperty({ description: 'images of a candidate', example: ['https://example.com/image1.jpg'] })
+    images: string[] = [];
 }

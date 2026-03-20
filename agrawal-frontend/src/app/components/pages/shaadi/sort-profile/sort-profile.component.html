@@ -3,14 +3,14 @@
         <div class="card shadow-sm mb-3 h-100">
             <div class="row g-0 h-100">
                 <div class="col-6">
-                    <img src="assets/img/mock-profile2.jpg" class="img-fluid rounded-start"
-                        style="object-fit: cover;">
+                    <img [src]="shaadiService.profileImage(profile)" class="img-fluid rounded-start" style="object-fit: cover; max-height: 350px;">
                 </div>
                 <div class="col-6">
                     <div class="d-flex flex-column h-100">
                         <div class="card-body">
                             <h5 class="card-title mb-1">{{profile.personal.fname}} {{profile.personal.lname}}</h5>
                             <p class="text-muted mb-1">{{profile.personal.dob | age}} yrs</p>
+                            <p class="text-muted mb-1">{{profile.personal.rashi}}</p>
                             <p class="text-muted mb-1">{{profile.personal.city}}</p>
                             <p class="text-muted mb-1">{{profile.personal.education}}</p>
                             <p class="text-muted mb-1">{{profile.personal.jobTitle}}</p>

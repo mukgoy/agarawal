@@ -30,8 +30,8 @@ export class ShaadiService {
   }
 
   update(updateShaadiDto: UpdateShaadiProfileDto) {
-    const profileModel = new this.profileModel(updateShaadiDto);
-    profileModel.updateOne(updateShaadiDto);
+    const id = updateShaadiDto._id;
+    this.profileModel.updateOne({_id: id}, updateShaadiDto).exec();
     return updateShaadiDto
   }
 

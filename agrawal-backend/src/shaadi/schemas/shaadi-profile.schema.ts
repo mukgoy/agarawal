@@ -4,6 +4,8 @@ import * as mongoose from 'mongoose';
 export const PersonalProfileSchema = new mongoose.Schema({
   fname: String,
   lname: String,
+  gender: String,
+  rashi: String,
   dob: String,
   tob: String,
   pob: String,
@@ -36,4 +38,5 @@ export const ShaadiProfileSchema = new mongoose.Schema({
   personal: PersonalProfileSchema,
   family: FamilyProfileSchema,
   contact: ContactProfileSchema,
+  images: [String],
 });

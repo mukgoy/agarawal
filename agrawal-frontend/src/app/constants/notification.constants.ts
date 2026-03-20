@@ -6,4 +6,8 @@ export const NOTIFY = {
     PROFILE_FETCH: {
         FAILED:"Profile fetch failed. Please try again later.",
     },
+    IMAGE_UPLOAD: {
+        SUCCESS:"Image uploaded successfully",
+        FAILED:"Image upload failed. Please try again later.",
+    },
 };

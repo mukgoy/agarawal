@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ShadiProfileModel } from '../models/shadi-profile.model';
 import { Observable, map } from 'rxjs';
 import { HttpService } from './http.service';
+import { SHADI_DEFAULT } from '../constants/shaadi.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,12 @@ export class ShaadiService {
 
   deleteUser(profile: ShadiProfileModel) {
     return this.http.delete(`v1/shaadi/profile/`+profile._id);
+  }
+
+  profileImage(profile: ShadiProfileModel) {
+    if(profile.images?.length) {
+      return profile.images[profile.images?.length - 1];
+    }
+    return SHADI_DEFAULT.PROFILE.Male;
   }
 }

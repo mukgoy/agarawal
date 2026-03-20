@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
-import { gotraList } from 'src/app/constants/gotra.constants';
 import { NOTIFY } from 'src/app/constants/notification.constants';
+import { genderList, gotraList, rashiList } from 'src/app/constants/shaadi.constants';
 import { ShadiProfileModel } from 'src/app/models/shadi-profile.model';
+import { CloudinaryService } from 'src/app/services/cloudinary.service';
 import { ShaadiService } from 'src/app/services/shaadi.service';
 import { UtilService } from 'src/app/services/util.service';
 
@@ -20,6 +21,8 @@ export class EditProfileComponent {
   personalFields = [
     { name: 'fname', label: 'First Name', type: 'text', space: 2, validators: [Validators.required]},
     { name: 'lname', label: 'Last Name', type: 'text', space: 2, validators: [Validators.required]},
+    { name: 'gender', label: 'Gender', type: 'select', space: 2, options: genderList.map(g => ({ label: g, value: g }))},
+    { name: 'rashi', label: 'Rashi', type: 'select', space: 2, options: rashiList.map(g => ({ label: g, value: g }))},
     { name: 'dob', label: 'Date of Birth', type: 'date', space: 2, validators: [Validators.required]},
     { name: 'tob', label: 'Time of Birth', type: 'text', space: 2, placeholder: 'e.g. 9:30 a.m'},
     { name: 'pob', label: 'Place of Birth', type: 'text', space: 2, placeholder:"e.g. New Delhi"},
@@ -54,6 +57,7 @@ export class EditProfileComponent {
     public router: Router,
     public route : ActivatedRoute,
     public shaadiService: ShaadiService,
+    public cloudinaryService: CloudinaryService,
     public util: UtilService
   ) {}
   
@@ -107,5 +111,18 @@ export class EditProfileComponent {
     }else{
       return this.shaadiService.createProfile(this.profile)
     }
+  }
+
+  uploadImage(event: any){
+    this.cloudinaryService.uploadImage(event). subscribe({
+      next:(res:any)=>{
+        this.util.openToastr('success', NOTIFY.IMAGE_UPLOAD.SUCCESS);
+        this.profile.images.push(res.url);
+        this.submit(true);
+      },
+      error:()=>{
+        this.util.openToastr('error', NOTIFY.IMAGE_UPLOAD.FAILED);
+      }
+    });
   }
 }

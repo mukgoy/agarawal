@@ -14,7 +14,8 @@ export class LeftMenuComponent {
 
   shaadiSubMenuItems = [
     { label: 'Find Profiles', icon: 'person_search', route: '/shadi/find-profiles' },
-    { label: 'Manage Profiles', icon: 'person_edit', route: '/shadi/manage-profiles' }
+    { label: 'Manage Profiles', icon: 'person_edit', route: '/shadi/manage-profiles' },
+    { label: 'Create Profile', icon: 'person_edit', route: '/shadi/create-profile' }
   ]
   leftMenuItems = [
     { label: 'My Profile', icon: 'person_edit', route: '/my-profile' },

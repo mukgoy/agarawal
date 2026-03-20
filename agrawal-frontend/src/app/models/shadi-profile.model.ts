@@ -2,6 +2,8 @@ export class PersonalDetailModel {
 
   fname = '';
   lname = '';
+  gender: 'Male'|'Female' = 'Male';
+  rashi = '';
   dob = '';
   tob = '';
   pob = '';
@@ -16,6 +18,8 @@ export class PersonalDetailModel {
   constructor(obj?: any) {
     this.fname = obj?.fname || '';
     this.lname = obj?.lname || '';
+    this.gender = obj?.gender || '';
+    this.rashi = obj?.rashi || '';
     this.dob = obj?.dob || '';
     this.tob = obj?.tob || '';
     this.pob = obj?.pob || '';
@@ -68,6 +72,7 @@ export class ShadiProfileModel {
   personal = new PersonalDetailModel();
   family = new FamilyDetailModel();
   contact = new ContactDetailModel();
+  images: string[] = [];
 
 
   constructor(obj?: any) {
@@ -76,5 +81,7 @@ export class ShadiProfileModel {
     this.personal = new PersonalDetailModel(obj?.personal);
     this.family = new FamilyDetailModel(obj?.family);
     this.contact = new ContactDetailModel(obj?.contact);
+    this.images = obj?.images || [];
+    
   }
 }

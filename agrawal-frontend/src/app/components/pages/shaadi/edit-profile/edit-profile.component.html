@@ -4,8 +4,6 @@
         <p>here can car create and edit profiles for shadi</p>
     </div>
 
-
-
     <div class="col-12">
         <div class="row">
             <mat-stepper orientation="vertical" [linear]="false" #stepper>
@@ -14,7 +12,8 @@
                     <app-form-builder [formFields]="personalFields" [(formGroup)]="personalForm"
                         class="m-2"></app-form-builder>
                     <div class="d-grid d-md-block text-center">
-                        <button mat-raised-button color="primary" (click)="submit()" [disabled]="personalForm.invalid">Submit</button>
+                        <button mat-raised-button color="primary" (click)="submit()"
+                            [disabled]="personalForm.invalid">Submit</button>
                     </div>
                 </mat-step>
                 <mat-step [stepControl]="familyForm">
@@ -22,7 +21,7 @@
                     <app-form-builder [formFields]="familyFields" [(formGroup)]="familyForm"
                         class="m-2"></app-form-builder>
                     <div class="d-grid d-md-block text-center">
-                        <button mat-raised-button color="primary"  (click)="submit()">Submit</button>
+                        <button mat-raised-button color="primary" (click)="submit()">Submit</button>
                     </div>
                 </mat-step>
                 <mat-step [stepControl]="contactForm">
@@ -30,7 +29,20 @@
                     <app-form-builder [formFields]="contactFields" [(formGroup)]="contactForm"
                         class="m-2"></app-form-builder>
                     <div class="d-grid d-md-block text-center">
-                        <button mat-raised-button color="primary"  (click)="submit(true)">Submit</button>
+                        <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+                    </div>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Profile Image</ng-template>
+                    <div class="profile-upload text-center">
+                        <div class="image-wrapper mb-2">
+                            <img [src]="shaadiService.profileImage(profile)" alt="Profile" class="profile-img" style="max-width: 200px;max-height: 400px;">
+                        </div>
+                        <button mat-raised-button color="primary" (click)="fileInput.click()">
+                            <mat-icon>upload</mat-icon>
+                            Upload Photo
+                        </button>
+                        <input type="file" #fileInput hidden (change)="uploadImage($event)">
                     </div>
                 </mat-step>
             </mat-stepper>
