@@ -11,9 +11,14 @@ export class LeftMenuComponent {
 
   @ViewChild('leftMenuRef') public leftMenuRef: MatSidenav | undefined;
 
+
+  shaadiSubMenuItems = [
+    { label: 'Find Profiles', icon: 'person_search', route: '/shadi/find-profiles' },
+    { label: 'Manage Profiles', icon: 'person_edit', route: '/shadi/manage-profiles' }
+  ]
   leftMenuItems = [
     { label: 'My Profile', icon: 'person_edit', route: '/my-profile' },
-    { label: 'Shaadi Profiles', icon: 'person_search', route: '/shaadi-profiles' },
+    { label: 'Shadi Profiles', icon: 'favorite', subMenu:this.shaadiSubMenuItems },
     { label: 'Memebers', icon: 'people', route: '/members' },
     { label: 'My Hostels', icon: 'apartment', route: '/my-hostels' },
     { label: 'Events', icon: 'receipt_long', route: '/events' },

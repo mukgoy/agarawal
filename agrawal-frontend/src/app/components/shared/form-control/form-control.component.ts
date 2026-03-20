@@ -15,7 +15,7 @@ export class FormControlComponent {
   @Input() type: string = 'text';
   @Input() title: string = '';
   @Input() placeholder: string = '';
-  @Input() data: Array<any> = [];
+  @Input() options?: Array<{label:string,value:any}> = [];
   @Input() minDate: Date | string = '';
   @Input() maxDate: Date | string = new Date();
   @Input() multiple: boolean = false;

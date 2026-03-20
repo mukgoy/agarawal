@@ -21,8 +21,8 @@
 <mat-form-field appearance="fill" class="w-100 form-field" [formGroup]="formGroup" [class.mat-form-field-invalid]="haserror()" *ngIf="type == 'select'">
     <mat-label>{{title}}</mat-label>
     <mat-select [placeholder]="placeholder" [formControlName]="controlName" [multiple]="multiple">
-      <mat-option *ngFor="let x of data" [value]="x.value">
-        {{x.viewValue}}
+      <mat-option *ngFor="let x of options" [value]="x.value">
+        {{x.label}}
       </mat-option>
     </mat-select>
     <mat-error *ngIf="haserror() && control.errors.required">This field is required</mat-error>
@@ -37,7 +37,7 @@
 <mat-form-field class="w-100 mat-date d-flex form-field" [formGroup]="formGroup" [class.mat-form-field-invalid]="haserror()" *ngIf="type == 'date'">
     <mat-label>{{title}}</mat-label>
     <input class="w-100" matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [placeholder]="placeholder" [formControlName]="controlName" (dateInput)="DateChange('input', $event)">
-    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-hint>DD/MM/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <mat-error *ngIf="haserror() && control.errors.required">This field is required</mat-error>

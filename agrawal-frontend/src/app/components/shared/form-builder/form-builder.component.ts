@@ -9,8 +9,17 @@ import { FormControlType } from '../form-control/form-control.component';
 })
 export class FormBuilderComponent {
 
-  @Input() formFields: Array<{ name: string, label: string, type: string, space:number, validators?:any[] }> = [];
-
+  @Input() formFields: Array<{ 
+    name: string, 
+    label: string,
+    placeholder?: string,
+    type: string, 
+    space:number, 
+    minDate?: Date | string,
+    maxDate?: Date | string,
+    validators?:any[], 
+    options?:Array<{label:string,value:any}> 
+  }> = [];
   @Input() formGroup: FormGroup = {} as FormGroup;
   @Output() formGroupChange = new EventEmitter<FormGroup>();
 

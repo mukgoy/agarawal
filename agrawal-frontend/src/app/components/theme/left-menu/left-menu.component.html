@@ -2,14 +2,26 @@
     <mat-drawer #leftMenuRef [mode]="uiStore.isMobile ? 'over' : 'side'" [opened]="!uiStore.isMobile">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
             <mat-nav-list>
-                <a mat-list-item [routerLink]="link.route" *ngFor="let link of leftMenuItems" [routerLinkActive]="'active'">
-                    <div class="d-flex link-color">
-                        <mat-icon>{{link.icon}}</mat-icon><span class="ms-1">{{ link.label }}</span>
-                    </div>
-                </a>
+                <ng-container *ngFor="let link of leftMenuItems">
+                    <a mat-list-item [routerLink]="link.route" [routerLinkActive]="'active'" *ngIf="!link.subMenu">
+                        <div class="d-flex link-color">
+                            <mat-icon>{{link.icon}}</mat-icon><span class="ms-1">{{ link.label }}</span>
+                        </div>
+                    </a>
+                    <mat-expansion-panel class="mat-elevation-z0" *ngIf="link.subMenu">
+                        <mat-expansion-panel-header class="px-3">
+                            <mat-panel-title>
+                                <mat-icon>{{link.icon}}</mat-icon>
+                                <span style="margin-left: 8px;">{{ link.label }}</span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <!-- Sub Menu -->
+                        <a mat-list-item [routerLink]="sub.route" [routerLinkActive]="'active'" *ngFor="let sub of link.subMenu">{{sub.label}}</a>
+                    </mat-expansion-panel>
+                </ng-container>
             </mat-nav-list>
 
-          
+
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"

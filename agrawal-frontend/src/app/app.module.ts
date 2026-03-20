@@ -16,6 +16,10 @@ import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core'
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 import { HeaderComponent } from './components/theme/header/header.component';
 import { LayoutComponent } from './components/theme/layout/layout.component';
@@ -33,6 +37,17 @@ import { LoginComponent } from './components/pages/auth/login/login.component';
 import { SignupComponent } from './components/pages/auth/signup/signup.component';
 import { UsersListComponent } from './components/pages/users/users-list/users-list.component';
 import { JwtInterceptor } from './interceptors';
+import { ProfilesListComponent } from './components/pages/shaadi/profiles-list/profiles-list.component';
+import { MyProfileComponent } from './components/pages/my-profile/my-profile.component';
+import { ManageProfilesComponent } from './components/pages/shaadi/manage-profiles/manage-profiles.component';
+import { ViewProfileComponent } from './components/pages/shaadi/view-profile/view-profile.component';
+import { EditProfileComponent } from './components/pages/shaadi/edit-profile/edit-profile.component';
+import { SortProfileComponent } from './components/pages/shaadi/sort-profile/sort-profile.component';
+import { MY_DATE_FORMATS } from './constants/app-config.constants';
+import { AgePipe } from './pipes/age.pipe';
+import { ToastrModule } from 'ngx-toastr';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common';
 
 
 const matModules = [
@@ -41,6 +56,7 @@ const matModules = [
   MatFormFieldModule, 
   MatInputModule, 
   MatDatepickerModule,
+  MatNativeDateModule,
   MatTableModule, 
   MatPaginatorModule, 
   MatSortModule,
@@ -48,6 +64,9 @@ const matModules = [
   MatSidenavModule,
   MatListModule,
   MatDialogModule,
+  MatExpansionModule,
+  MatStepperModule,
+  MatSnackBarModule
 ];
 
 @NgModule({
@@ -65,7 +84,14 @@ const matModules = [
     FormControlComponent,
     FormBuilderComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProfilesListComponent,
+    MyProfileComponent,
+    ManageProfilesComponent,
+    ViewProfileComponent,
+    EditProfileComponent,
+    SortProfileComponent,
+    AgePipe
   ],
   imports: [
     BrowserModule,
@@ -75,12 +101,14 @@ const matModules = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
 
     ...matModules
   ],
   providers: [
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
   ],
   bootstrap: [AppComponent]
 })

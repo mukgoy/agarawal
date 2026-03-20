@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-12">
+        <h2>Manage Profiles</h2>
+        <p>Below is the list of profiles created by you.</p>
+    </div>
+
+    <div class="col-12">
+        <div class="d-flex flex-wrap justify-content-between justify-content-center">
+            <div class="mx-auto mx-md-0">
+                <div class="d-flex flex-nowrap flex-fill pt-4">
+                    <button mat-raised-button class="mx-1 text-nowrap" routerLink="/shadi/create-profile">Create New
+                        Profile</button>
+                </div>
+            </div>
+            <div class="mx-auto mx-md-0">
+                <div class="pt-3" style="min-width: 200px;">
+                    <mat-form-field>
+                        <mat-label>Search</mat-label>
+                        <input matInput placeholder="Search" #input>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-sort-profile [profiles]="profiles"></app-sort-profile>

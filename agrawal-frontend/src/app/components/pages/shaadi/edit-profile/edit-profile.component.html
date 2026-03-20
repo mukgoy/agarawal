@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-12">
+        <h2>Create Profile</h2>
+        <p>here can car create and edit profiles for shadi</p>
+    </div>
+
+
+
+    <div class="col-12">
+        <div class="row">
+            <mat-stepper orientation="vertical" [linear]="false" #stepper>
+                <mat-step [stepControl]="personalForm">
+                    <ng-template matStepLabel>Personal Details</ng-template>
+                    <app-form-builder [formFields]="personalFields" [(formGroup)]="personalForm"
+                        class="m-2"></app-form-builder>
+                    <div class="d-grid d-md-block text-center">
+                        <button mat-raised-button color="primary" (click)="submit()" [disabled]="personalForm.invalid">Submit</button>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="familyForm">
+                    <ng-template matStepLabel>Family Details</ng-template>
+                    <app-form-builder [formFields]="familyFields" [(formGroup)]="familyForm"
+                        class="m-2"></app-form-builder>
+                    <div class="d-grid d-md-block text-center">
+                        <button mat-raised-button color="primary"  (click)="submit()">Submit</button>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="contactForm">
+                    <ng-template matStepLabel>Contact Details</ng-template>
+                    <app-form-builder [formFields]="contactFields" [(formGroup)]="contactForm"
+                        class="m-2"></app-form-builder>
+                    <div class="d-grid d-md-block text-center">
+                        <button mat-raised-button color="primary"  (click)="submit(true)">Submit</button>
+                    </div>
+                </mat-step>
+            </mat-stepper>
+        </div>
+    </div>
+
+</div>

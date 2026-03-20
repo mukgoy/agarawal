@@ -1,9 +1,16 @@
 <form [formGroup]="formGroup">
     <div class="row form-group">
-        <div class="col-sm-12 col-md-6" *ngFor="let item of formFields" 
-            [class]="{'d-none': item.space == 0, 'col-md-6': item.space == 2, 'col-md-4': item.space == 3 }"
-        >
-            <app-form-control [type]="item.type" [formGroup]="formGroup" [title]="item.label" [placeholder]="item.label" [controlName]="item.name" ></app-form-control>
+        <div class="col-sm-12 col-md-6" *ngFor="let item of formFields" [class]="{'d-none': item.space == 0, 'col-md-6': item.space == 2, 'col-md-4': item.space == 3 }">
+            <app-form-control 
+                [type]="item.type"
+                [options]="item.options"
+                [formGroup]="formGroup"
+                [title]="item.label"
+                [placeholder]="item.placeholder || item.label"
+                [controlName]="item.name"
+                [minDate]="item.minDate ? item.minDate : ''"
+                [maxDate]="item.maxDate ? item.maxDate : ''"               
+            ></app-form-control>
         </div>
     </div>
 </form>

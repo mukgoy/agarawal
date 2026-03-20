@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserModel } from 'src/app/models/user.model';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { DialogService } from 'src/app/services/dailog.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -22,9 +23,11 @@ export class UsersListComponent {
   constructor(
     public dialogService: DialogService,
     public userService: UserService,
+    private breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit() {
+    this.breadcrumbService.setBreadcrumb('members');
     this.getUsers();
   }
 

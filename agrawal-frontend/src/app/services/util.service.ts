@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-// import { MatDialog } from '@angular/material/dialog';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
-import { environment } from 'src/environments/environment';
 import { HttpService } from './http.service';
 import { catchError, map, of } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,20 @@ import { catchError, map, of } from 'rxjs';
 export class UtilService {
 
   constructor(
+    private router: Router,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
     public datepipe: DatePipe,
-    private http: HttpService
+    private http: HttpService,
+    private toastr: ToastrService,
   ) { }
+
+  openToastr(type: 'error'|'success', message: string, title?: string) {
+    if(type=='success')
+      this.toastr.success(message, title);
+    else
+      this.toastr.error(message, title);
+  }
 
   openSnackBar(message: string, action?: string) {
     action = action || "Close";
@@ -27,10 +36,6 @@ export class UtilService {
       })
     }
   }
-
-
-
-
 
   decycle(obj:any, stack:any[] = []):any {
     if (!obj || typeof obj !== 'object')
@@ -86,11 +91,9 @@ export class UtilService {
   }
 
   datePipe(date:Date, format?:string){
-    format = format || 'MM/dd/yyyy';
-    return this.datepipe.transform(new Date(date), 'MM/dd/yyyy');
+    format = format || 'dd/MM/yyyy';
+    return this.datepipe.transform(new Date(date), format);
   }
-
-  
 
   urlToBlob(url:string, data:any, title:string){
     return this.http.get(url,data, {responseType: 'blob'}).pipe(
@@ -124,9 +127,14 @@ export class UtilService {
     anchorTag.click();
   }
 
- 
-
   hasExtension(filename:string) {
     return /\.[^\/\\]+$/.test(filename);
+  }
+
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 }

@@ -1,0 +1,6 @@
+https://console.cloudinary.com/app/c-d01b06fb193b39ee7204303890203e/image/getting-started
+cloudinary.config({ 
+        cloud_name: 'dlsafak15', 
+        api_key: '848173535133838', 
+        api_secret: '<your_api_secret>' // Click 'View API Keys' above to copy your API secret
+    });
