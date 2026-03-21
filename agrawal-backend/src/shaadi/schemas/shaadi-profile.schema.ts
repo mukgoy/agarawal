@@ -39,4 +39,6 @@ export const ShaadiProfileSchema = new mongoose.Schema({
   family: FamilyProfileSchema,
   contact: ContactProfileSchema,
   images: [String],
+},{
+  timestamps: true
 });

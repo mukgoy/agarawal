@@ -21,9 +21,9 @@ export class EditProfileComponent {
   personalFields = [
     { name: 'fname', label: 'First Name', type: 'text', space: 2, validators: [Validators.required]},
     { name: 'lname', label: 'Last Name', type: 'text', space: 2, validators: [Validators.required]},
-    { name: 'gender', label: 'Gender', type: 'select', space: 2, options: genderList.map(g => ({ label: g, value: g }))},
+    { name: 'gender', label: 'Gender', type: 'select', space: 2, options: genderList.map(g => ({ label: g, value: g })), validators: [Validators.required]},
     { name: 'rashi', label: 'Rashi', type: 'select', space: 2, options: rashiList.map(g => ({ label: g, value: g }))},
-    { name: 'dob', label: 'Date of Birth', type: 'date', space: 2, validators: [Validators.required]},
+    { name: 'dob', label: 'Date of Birth', type: 'date', space: 2},
     { name: 'tob', label: 'Time of Birth', type: 'text', space: 2, placeholder: 'e.g. 9:30 a.m'},
     { name: 'pob', label: 'Place of Birth', type: 'text', space: 2, placeholder:"e.g. New Delhi"},
     { name: 'city', label: 'Current City', type: 'text', space: 2, placeholder:"e.g. New Delhi"},
