@@ -1,5 +1,6 @@
 
 import * as mongoose from 'mongoose';
+import { auditPlugin } from 'src/audit/audit.plugin';
 
 export const PersonalProfileSchema = new mongoose.Schema({
   fname: String,
@@ -42,3 +43,5 @@ export const ShaadiProfileSchema = new mongoose.Schema({
 },{
   timestamps: true
 });
+
+ShaadiProfileSchema.plugin(auditPlugin)
