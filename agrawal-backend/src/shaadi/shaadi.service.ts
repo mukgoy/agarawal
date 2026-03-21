@@ -35,6 +35,6 @@ export class ShaadiService {
   }
 
   remove(id: string) {
-    return this.profileModel.deleteOne({ _id: id }).exec();
+    return this.profileModel.findOneAndDelete({ _id: id }).exec();
   }
 }
