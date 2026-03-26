@@ -1,4 +1,40 @@
-<p>view-profile works!</p>
+<div class="a4-container">
+    <div class="content">
+         <!-- Personal Details -->
+        <div class="section">
+            <h1>Bio Data</h1>
+            <div class="d-flex flex-row bd-highlight mb-3">
+                <div>
+                    <h3>Personal Details</h3>
+                    <div class="row"><span class="label">Name:</span>{{profile.personal.fname | titlecase }} {{profile.personal.lname | titlecase }}</div>
+                    <div class="row"><span class="label">Date of Birth:</span>{{profile.personal.dob | date:'longDate'}}</div>
+                    <div class="row"><span class="label">Time of Birth:</span>{{profile.personal.tob}}</div>
+                    <div class="row"><span class="label">Place of Birth:</span>{{profile.personal.pob | titlecase}}</div>
+                    <div class="row"><span class="label">Current Place:</span>{{profile.personal.city | titlecase}}</div>
+                    <div class="row"><span class="label">Rashi:</span>{{profile.personal.rashi | titlecase}}</div>
+                    <div class="row"><span class="label">Gotra:</span>{{profile.personal.gotra | titlecase}}</div>
+                    <div class="row"><span class="label">Height:</span>{{profile.personal.height | titlecase}}</div>
+                    <div class="row"><span class="label">Weight:</span>{{profile.personal.weight | titlecase}}</div>
+                </div>
+                <img [src]="profile.images[profile.images.length-1]" class="profile ms-auto my-auto rounded img-fluid" alt="Profile Photo">
+            </div>
+        </div>
 
+        <!-- Professional Details -->
+        <div class="section">
+            <h3>Professional Details</h3>
+            <div class="row"><span class="label">Education:</span>{{profile.personal.education | titlecase}}</div>
+            <div class="row"><span class="label">Occupation:</span>{{profile.personal.jobTitle | titlecase}}</div>
+        </div>
 
-{{profile | json}}
+        <!-- Family Details -->
+        <div class="section">
+            <h3>Family Details</h3>
+
+            <div class="row"><span class="label">Father's Name:</span>{{profile.family.fatherName | titlecase}}</div>
+            <div class="row"><span class="label">Father's Occupation:</span>{{profile.family.fatherOccupation | titlecase}}</div>
+            <div class="row"><span class="label">Mother's Name:</span>{{profile.family.motherName | titlecase}}</div>
+            <div class="row"><span class="label">Mother's Occupation:</span>{{profile.family.motherOccupation | titlecase}}</div>
+        </div>
+    </div>
+</div>

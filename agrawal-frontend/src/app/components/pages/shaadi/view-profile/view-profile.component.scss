@@ -1,0 +1,82 @@
+.a4-container {
+    width: 210mm;
+    height: 297mm;
+    margin: auto;
+    position: relative;
+
+    /* Background image */
+    background-image: url('../../../../../assets/img/profile-bg.png');
+    /* change path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: cornsilk;
+
+    /* Optional shadow for screen */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+}
+
+/* Content inside A4 */
+.content {
+    position: absolute;
+    top: 22mm;
+    left: 25mm;
+    right: 25mm;
+    bottom: 22mm;
+    font-family: Arial, sans-serif;
+    color: #8c4804;
+}
+
+/* Print settings */
+@media print {
+    body {
+        background: none;
+    }
+
+    .a4-container {
+        box-shadow: none;
+        margin: 0;
+        width: 210mm;
+        height: 297mm;
+    }
+}
+
+
+/* Content styling */
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #DA2514;
+}
+
+h3 {
+    color: #DA2514;
+}
+
+.section {
+    margin-bottom: 15px;
+}
+
+.label {
+    font-weight: bold;
+    width: 175px;
+    display: inline-block;
+}
+
+.row {
+    margin-bottom: 5px;
+}
+
+img.profile {
+    width: 150px;
+    // height: 250px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
