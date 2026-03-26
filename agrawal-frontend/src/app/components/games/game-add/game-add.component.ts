@@ -33,7 +33,7 @@ export class GameAddComponent {
 
   checkAnswer() {
     // debugger;
-    let userAnswer = parseInt(this.answer.trim());
+    let userAnswer = parseInt(this.answer);
     this.correctAnswer = this.num1 + this.num2;
 
     this.maxScore++;
