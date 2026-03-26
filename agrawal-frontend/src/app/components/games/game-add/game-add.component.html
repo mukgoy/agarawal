@@ -38,15 +38,15 @@
 
   <div class="question mb-3" id="question">{{question}}</div>
 
-  <input type="number" class="form-control mb-3" placeholder="Enter answer" [(ngModel)]="answer">
+  <input type="number" class="form-control mb-3 form-control-lg mb-5" placeholder="Enter answer" [(ngModel)]="answer">
 
-  <button class="btn btn-primary w-100 mb-2" (click)="checkAnswer()" *ngIf="!result">Submit</button>
+  <button class="btn btn-primary w-100 mb-2 btn-lg" (click)="checkAnswer()" *ngIf="!result">Submit</button>
   
   <div id="result" class="mb-2 fw-bold" [style]="{color:result}" *ngIf="result">
     <span *ngIf="result=='green'"> ✅ Correct!</span>
     <span *ngIf="result=='red'">❌ Wrong! Answer: {{correctAnswer}}</span>
 </div>
-<button class="btn btn-primary w-100 mb-2" (click)="generateQuestion()" *ngIf="result">NEXT</button>
+<button class="btn btn-primary w-100 mb-3 btn-lg" (click)="generateQuestion()" *ngIf="result">NEXT</button>
 
   <div class="score">
     Score: <span id="score">{{score}} / {{maxScore}}</span>
