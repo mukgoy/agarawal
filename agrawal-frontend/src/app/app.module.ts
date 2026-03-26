@@ -48,6 +48,8 @@ import { AgePipe } from './pipes/age.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
+import { GameMainComponent } from './components/games/game-main/game-main.component';
+import { GameAddComponent } from './components/games/game-add/game-add.component';
 
 
 const matModules = [
@@ -91,7 +93,9 @@ const matModules = [
     ViewProfileComponent,
     EditProfileComponent,
     SortProfileComponent,
-    AgePipe
+    AgePipe,
+    GameMainComponent,
+    GameAddComponent
   ],
   imports: [
     BrowserModule,

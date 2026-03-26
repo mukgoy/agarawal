@@ -11,6 +11,8 @@ import { MyProfileComponent } from './components/pages/my-profile/my-profile.com
 import { ManageProfilesComponent } from './components/pages/shaadi/manage-profiles/manage-profiles.component';
 import { EditProfileComponent } from './components/pages/shaadi/edit-profile/edit-profile.component';
 import { ViewProfileComponent } from './components/pages/shaadi/view-profile/view-profile.component';
+import { GameMainComponent } from './components/games/game-main/game-main.component';
+import { GameAddComponent } from './components/games/game-add/game-add.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,14 @@ const routes: Routes = [
     canActivate: [NoAuthGuard],
   },
   { path: 'profile/:profileId', component: ViewProfileComponent },
+  {
+    path: 'game',
+    children: [
+      { path: 'main', component: GameMainComponent },
+      { path: 'add', component: GameAddComponent },
+      { path: '**', redirectTo: 'main' },
+    ]
+  },
   {
     path: '', 
     component: LayoutComponent, 
