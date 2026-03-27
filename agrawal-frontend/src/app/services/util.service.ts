@@ -137,4 +137,9 @@ export class UtilService {
       this.router.navigate([currentUrl]);
     });
   }
+
+  findLebelByValue(options:any[], value:any, labelKey = 'label', valueKey = 'value'){
+    const option = options.find(opt=>opt[valueKey] === value);
+    return option ? option[labelKey] : '';
+  }
 }

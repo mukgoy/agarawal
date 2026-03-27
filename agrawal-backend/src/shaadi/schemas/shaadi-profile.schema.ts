@@ -13,10 +13,15 @@ export const PersonalProfileSchema = new mongoose.Schema({
   city: String,
   manglik: String,
   gotra: String,
-  height: String,
-  weight: String,
+  height: Number,
+  weight: Number,
   education: String,
   jobTitle: String,
+  income: String,
+  employedType: String,
+  maritalStatus: String,
+  physicalStatus: String,
+
 });
 
 export const FamilyProfileSchema = new mongoose.Schema({

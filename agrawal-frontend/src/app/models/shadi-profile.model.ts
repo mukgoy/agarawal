@@ -12,8 +12,15 @@ export class PersonalDetailModel {
   gotra = '';
   height = '';
   weight = '';
+
   education = '';
   jobTitle = '';
+  income = '';
+  employedType = '';
+
+  maritalStatus = '';
+  physicalStatus = '';
+
 
   constructor(obj?: any) {
     this.fname = obj?.fname || '';
@@ -30,6 +37,12 @@ export class PersonalDetailModel {
     this.weight = obj?.weight || '';
     this.education = obj?.education || '';
     this.jobTitle = obj?.jobTitle || '';
+    this.income = obj?.income || '';
+    this.employedType = obj?.employedType || '';
+
+    this.maritalStatus = obj?.maritalStatus || '';
+    this.physicalStatus = obj?.physicalStatus || '';
+
   }
 
 }

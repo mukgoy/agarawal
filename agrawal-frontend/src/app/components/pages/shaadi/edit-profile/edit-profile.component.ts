@@ -3,7 +3,8 @@ import { FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NOTIFY } from 'src/app/constants/notification.constants';
-import { genderList, gotraList, rashiList } from 'src/app/constants/shaadi.constants';
+import { employedTypeList, genderList, gotraList, heightList, incomeList, 
+  maritalStatusList, physicalStatusList, rashiList, weightList } from 'src/app/constants/shaadi.constants';
 import { ShadiProfileModel } from 'src/app/models/shadi-profile.model';
 import { CloudinaryService } from 'src/app/services/cloudinary.service';
 import { ShaadiService } from 'src/app/services/shaadi.service';
@@ -29,10 +30,18 @@ export class EditProfileComponent {
     { name: 'city', label: 'Current City', type: 'text', space: 2, placeholder:"e.g. New Delhi"},
     { name: 'manglik', label: 'Manglik', type: 'text', space: 2, placeholder:"No"},
     { name: 'gotra', label: 'Gotra', type: 'select', space: 2, options: gotraList.map(g => ({ label: g, value: g }))},
-    { name: 'height', label: 'Height', type: 'text', space: 2, placeholder: 'e.g. 5 feet 7 inches'},
-    { name: 'weight', label: 'Weight', type: 'text', space: 2, placeholder: 'e.g. 60 kg'},
+
+    { name: 'maritalStatus', label: 'Marital Status', type: 'select', space: 2, options: maritalStatusList.map(g => ({ label: g, value: g }))},
+    { name: 'physicalStatus', label: 'Physical Status', type: 'select', space: 2, options: physicalStatusList.map(g => ({ label: g, value: g }))},
+
+    { name: 'height', label: 'Height', type: 'select', space: 2, options: heightList},
+    { name: 'weight', label: 'Weight', type: 'select', space: 2, options: weightList},
+
     { name: 'education', label: 'Education', type: 'text', space: 2, placeholder:"e.g. B.Tech (IIT Kanpur)"},
-    { name: 'jobTitle', label: 'Job/Occupation', type: 'text', space: 2, placeholder:"e.g. Software Engineer (TCS)"}
+    { name: 'employedType', label: 'Employment Type', type: 'select', space: 2, options: employedTypeList.map(g => ({ label: g, value: g }))},
+    { name: 'jobTitle', label: 'Job/Occupation', type: 'text', space: 2, placeholder:"e.g. Software Engineer (TCS)"},
+    { name: 'income', label: 'Annual Income', type: 'select', space: 2, options: incomeList.map(g => ({ label: g, value: g }))},
+
   ];
   familyFields = [
     { name: 'fatherName', label: "Father's Name", type: 'text', space: 2},

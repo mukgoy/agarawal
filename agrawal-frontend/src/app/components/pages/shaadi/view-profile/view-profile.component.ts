@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NOTIFY } from 'src/app/constants/notification.constants';
+import { heightList, weightList } from 'src/app/constants/shaadi.constants';
 import { ShadiProfileModel } from 'src/app/models/shadi-profile.model';
 import { ShaadiService } from 'src/app/services/shaadi.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -11,6 +12,9 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./view-profile.component.scss']
 })
 export class ViewProfileComponent {
+  
+  heightList = heightList;
+  weightList = weightList;
 
   profile = new ShadiProfileModel();
 

@@ -45,4 +45,16 @@ export class ProfilePersonalDto {
   @ApiProperty({ description: 'Job Title', example: 'Software Engineer' })
   jobTitle = '';
 
+  @ApiProperty({ description: 'Annual Income', example: '10-20 Lakhs per annum' })
+  income = '';
+
+  @ApiProperty({ description: 'Employment Type', example: 'Private Sector' })
+  employedType = '';
+
+  @ApiProperty({ description: 'Marital Status', example: 'Never Married' })
+  maritalStatus = '';
+
+  @ApiProperty({ description: 'Physical Status', example: 'Normal' })
+  physicalStatus = '';
+
 }
