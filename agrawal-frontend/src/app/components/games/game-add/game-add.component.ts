@@ -33,6 +33,10 @@ export class GameAddComponent {
 
   checkAnswer() {
     // debugger;
+    if(!this.answer){
+      return;
+    }
+    
     let userAnswer = parseInt(this.answer);
     this.correctAnswer = this.num1 + this.num2;
 
@@ -40,13 +44,8 @@ export class GameAddComponent {
     if (userAnswer === this.correctAnswer) {
       this.result = "green";
       this.score++;
-
-      // document.getElementById("result").innerText = "✅ Correct!";
-      // document.getElementById("result").style.color = "green";
     } else {
       this.result = "red";
-      // document.getElementById("result").innerText = "❌ Wrong! Answer: " + correctAnswer;
-      // document.getElementById("result").style.color = "red";
     }
   }
 
