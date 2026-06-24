@@ -10,27 +10,33 @@
         <div class="card shadow-sm mb-3">
             <div class="row g-0">
                 <div class="col-lg-3">
-                    <img src="assets/img/mock-profile2.jpg" class="img-fluid h-100 rounded-start"
-                        style="object-fit: cover;">
+                    <div class="position-relative">
+                        <button mat-raised-button (click)="fileInput.click()" class="position-absolute top-0 start-0 m-2">
+                            <mat-icon>upload</mat-icon>Change Photo
+                        </button>
+                        <input type="file" #fileInput hidden (change)="uploadImage($event)">
+                        <img [src]="myProfile.photoUrl || 'assets/img/mock/profile-male.jpg'" class="img-fluid h-100 rounded-start" style="object-fit: cover;">
+                    </div>
                 </div>
                 <div class="col-6">
                     <div class="card-body">
-                        <h5 class="card-title mb-1">Rahul Verma</h5>
-                        <p class="mb-2">Software Engineer</p>
-                        <p class="text-muted mb-1">Phone: 9783719326</p>
-                        <p class="text-muted">29 years</p>
+                        <h5 class="card-title mb-1">{{myProfile.name}}</h5>
+                        <p class="mb-2">{{myProfile.jobTitle}}</p>
+                        <p class="mb-2 small">{{myProfile.jobDescription}}</p>
+                        <p class="text-muted mb-1">Phone: {{myProfile.phone}}</p>
+                        <p class="text-muted">Age: {{myProfile.dob | age}} years</p>
 
                         <h4 class="mb-0">Legacy Address</h4>
-                        <p class="small">Haroti, Sapotra, Sawai Madhopur, 324005</p>
+                        <p class="small">{{myProfile.getFullAddress('legacy')}}</p>
 
                         <h4 class="mb-0">Current Address</h4>
-                        <p class="small">Haroti, Sapotra, Sawai Madhopur, 324005</p>
+                        <p class="small">{{myProfile.getFullAddress('current')}}</p>
                     </div>
 
 
                     <div class="col-md-3= d-flex align-items-center justify-content-center">
                         <div class="p-3 w-100">
-                            <button class="btn btn-outline-primary w-100 mb-2">Edit</button>
+                            <button class="btn btn-outline-primary w-100 mb-2" (click)="editUser()">Edit</button>
                         </div>
                     </div>
                 </div>

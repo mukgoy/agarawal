@@ -10,3 +10,5 @@ export const AuditSchema = new mongoose.Schema({
 },{
   timestamps: true
 });
+
+export const AuditModel = mongoose.model('audits', AuditSchema);

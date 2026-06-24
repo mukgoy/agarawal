@@ -50,6 +50,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
 import { GameMainComponent } from './components/games/game-main/game-main.component';
 import { GameAddComponent } from './components/games/game-add/game-add.component';
+import { appInitializer } from './services/config.service';
 
 
 const matModules = [
@@ -110,9 +111,11 @@ const matModules = [
     ...matModules
   ],
   providers: [
+    appInitializer,
     DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+    // { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]
 })

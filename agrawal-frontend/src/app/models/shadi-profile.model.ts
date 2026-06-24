@@ -23,25 +23,25 @@ export class PersonalDetailModel {
 
 
   constructor(obj?: any) {
-    this.fname = obj?.fname || '';
-    this.lname = obj?.lname || '';
-    this.gender = obj?.gender || '';
-    this.rashi = obj?.rashi || '';
-    this.dob = obj?.dob || '';
-    this.tob = obj?.tob || '';
-    this.pob = obj?.pob || '';
-    this.city = obj?.city || '';
-    this.manglik = obj?.manglik || '';
-    this.gotra = obj?.gotra || '';
-    this.height = obj?.height || '';
-    this.weight = obj?.weight || '';
-    this.education = obj?.education || '';
-    this.jobTitle = obj?.jobTitle || '';
-    this.income = obj?.income || '';
-    this.employedType = obj?.employedType || '';
+    this.fname = obj?.fname?.toString() || '';
+    this.lname = obj?.lname?.toString() || '';
+    this.gender = obj?.gender?.toString() || '';
+    this.rashi = obj?.rashi?.toString() || '';
+    this.dob = obj?.dob?.toString() || '';
+    this.tob = obj?.tob?.toString() || '';
+    this.pob = obj?.pob?.toString() || '';
+    this.city = obj?.city?.toString() || '';
+    this.manglik = obj?.manglik?.toString() || '';
+    this.gotra = obj?.gotra?.toString() || '';
+    this.height = obj?.height?.toString() || '';
+    this.weight = obj?.weight?.toString() || '';
+    this.education = obj?.education?.toString() || '';
+    this.jobTitle = obj?.jobTitle?.toString() || '';
+    this.income = obj?.income?.toString() || '';
+    this.employedType = obj?.employedType?.toString() || '';
 
-    this.maritalStatus = obj?.maritalStatus || '';
-    this.physicalStatus = obj?.physicalStatus || '';
+    this.maritalStatus = obj?.maritalStatus?.toString() || '';
+    this.physicalStatus = obj?.physicalStatus?.toString() || '';
 
   }
 
@@ -56,12 +56,12 @@ export class FamilyDetailModel {
   sistersCount = '';
 
   constructor(obj?: any) {
-    this.fatherName = obj?.fatherName || '';
-    this.fatherOccupation = obj?.fatherOccupation || '';
-    this.motherName = obj?.motherName || '';
-    this.motherOccupation = obj?.motherOccupation || '';
-    this.brothersCount = obj?.brothersCount || '';
-    this.sistersCount = obj?.sistersCount || '';
+    this.fatherName = obj?.fatherName?.toString() || '';
+    this.fatherOccupation = obj?.fatherOccupation?.toString() || '';
+    this.motherName = obj?.motherName?.toString() || '';
+    this.motherOccupation = obj?.motherOccupation?.toString() || '';
+    this.brothersCount = obj?.brothersCount?.toString() || '';
+    this.sistersCount = obj?.sistersCount?.toString() || '';
   }
 
 }
@@ -72,9 +72,9 @@ export class ContactDetailModel {
   address = '';
 
   constructor(obj?: any) {
-    this.phone = obj?.phone || '';
-    this.email = obj?.email || '';
-    this.address = obj?.address || '';
+    this.phone = obj?.phone?.toString() || '';
+    this.email = obj?.email?.toString() || '';
+    this.address = obj?.address?.toString() || '';
   }
 
 }

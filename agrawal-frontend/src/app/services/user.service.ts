@@ -9,6 +9,7 @@ import { HttpService } from './http.service';
 export class UserService {
 
   userList: UserModel[] = [];
+  myProfile: UserModel = new UserModel();
   constructor(
     private http: HttpService
   ) { }
@@ -17,6 +18,14 @@ export class UserService {
     return this.http.get<UserModel[]>('v1/users').pipe(
       map((data: UserModel[]) => {
         return data.map((item: UserModel) => new UserModel(item));
+      })
+    );
+  }
+
+  getUser(id: string): Observable<UserModel> {
+    return this.http.get<UserModel>('v1/users/'+id).pipe(
+      map((data: UserModel) => {
+        return new UserModel(data);
       })
     );
   }

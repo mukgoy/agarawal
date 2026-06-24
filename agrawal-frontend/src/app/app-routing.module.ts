@@ -49,7 +49,7 @@ const routes: Routes = [
       { path: 'members', component: UsersListComponent },
       { path: 'my-hostels', component: UsersListComponent },
       { path: 'events', component: UsersListComponent },
-      { path: '**', redirectTo: 'members' }
+      { path: '**', redirectTo: 'my-profile' }
     ]
   }
 

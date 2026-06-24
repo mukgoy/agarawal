@@ -1,16 +1,13 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { OAuth2Client } from 'google-auth-library';
-import { Model } from 'mongoose';
-import { Auth } from './entities/auth.entity';
+import { UserModel } from '../users/schemas/user.schema';
 
 @Injectable()
 export class AuthService {
   private client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
   constructor(
-    @Inject('AUTH_MODEL')
-    private authModel: Model<Auth>,
     private jwtService: JwtService,
   ) { }
 
@@ -41,7 +38,7 @@ export class AuthService {
 
       return {
         token: appToken,
-        user,
+        user: user,
       };
     } catch (e) {
       throw new UnauthorizedException('Invalid Google token');
@@ -50,23 +47,23 @@ export class AuthService {
 
   // 🔧 Replace with DB logic
   private async findOrCreateUser(data: any) {
-    const user = await this.authModel.findOne({ googleId: data.googleId }).exec();
+    const user = await UserModel.findOne({ googleId: data.googleId }).exec();
     if (user) {
       return user;
     }
     else{
-      const newUser = new this.authModel({...data, role: 'user'});
+      const newUser = new UserModel({...data, role: 'user'});
       await newUser.save();
       return newUser;
     }
   }
 
   async updatePhone(phone: string, userId: string) {
-    const user = await this.authModel.findOne({ _id: userId }).exec();
+    const user = await UserModel.findOne({ _id: userId }).exec();
     if (user) {
       user.phone = phone;
-      const authModel = new this.authModel(user);
-      return authModel.updateOne(user);
+      const userModel = new UserModel(user);
+      return userModel.updateOne(user);
     }
   }
 }

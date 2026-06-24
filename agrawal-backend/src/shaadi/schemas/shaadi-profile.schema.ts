@@ -50,3 +50,5 @@ export const ShaadiProfileSchema = new mongoose.Schema({
 });
 
 ShaadiProfileSchema.plugin(auditPlugin)
+
+export const ShaadiProfileModel = mongoose.model('shaadiprofiles', ShaadiProfileSchema);

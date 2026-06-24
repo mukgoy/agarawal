@@ -51,6 +51,10 @@ export class AuthService {
     return new Date().getTime() < expiry*1000;
   }
 
+  getUserId(): string {
+    return this._auth.user?._id || '';
+  }
+
   logout(){
     this.setAuth(new AuthModel({} as AuthModel));
   }

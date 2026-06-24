@@ -1,40 +1,37 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateShaadiProfileDto } from './dto/create-shaadi-profile.dto';
 import { UpdateShaadiProfileDto } from './dto/update-shaadi-profile.dto';
-import { Model } from 'mongoose';
+import { ShaadiProfileModel } from './schemas/shaadi-profile.schema';
 
 @Injectable()
 export class ShaadiService {
-  constructor(
-    @Inject('SHAADI_PROFILE_MODEL')
-    private profileModel: Model<any>,
-  ) { }
+  constructor() { }
 
   create(createProfileDto: CreateShaadiProfileDto, userId: string) {
     delete createProfileDto._id;
     createProfileDto.owner = userId;
-    const profileModel = new this.profileModel(createProfileDto);
+    const profileModel = new ShaadiProfileModel(createProfileDto);
     return profileModel.save();
   }
 
-  findAll(userId: string): Promise<CreateShaadiProfileDto[]> {
+  findAll(userId: string) {
     if (userId) {
-      return this.profileModel.find({ owner: userId }).exec();
+      return ShaadiProfileModel.find({ owner: userId }).exec();
     }
-    return this.profileModel.find().exec();
+    return ShaadiProfileModel.find().exec();
   }
 
   findOne(id: string) {
-    return this.profileModel.findOne({ _id: id }).exec();
+    return ShaadiProfileModel.findOne({ _id: id }).exec();
   }
 
   update(updateShaadiDto: UpdateShaadiProfileDto) {
     const id = updateShaadiDto._id;
-    this.profileModel.findOneAndUpdate({ _id: id }, updateShaadiDto).exec();
+    ShaadiProfileModel.findOneAndUpdate({ _id: id }, updateShaadiDto).exec();
     return updateShaadiDto;
   }
 
   remove(id: string) {
-    return this.profileModel.findOneAndDelete({ _id: id }).exec();
+    return ShaadiProfileModel.findOneAndDelete({ _id: id }).exec();
   }
 }

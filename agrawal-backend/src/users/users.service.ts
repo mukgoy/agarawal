@@ -4,35 +4,35 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { Model, ObjectId } from 'mongoose';
 import { User } from './entities/user.entity';
 import { Types } from 'mongoose';
+import { UserModel } from './schemas/user.schema';
 
 @Injectable()
 export class UsersService {
 
-  constructor(
-    @Inject('USER_MODEL')
-    private userModel: Model<User>,
-  ) {}
+  constructor(  ) {}
   
   create(createUserDto: CreateUserDto) {
     delete createUserDto._id;
-    const userModel = new this.userModel(createUserDto);
+    const userModel = new UserModel(createUserDto);
     return userModel.save();
   }
 
-  findAll(): Promise<User[]> {
-    return this.userModel.find().exec();
+  findAll(): Promise<any[]> {
+    return UserModel.find().exec();
   }
 
   findOne(id: string) {
-    return this.userModel.findOne({_id: id}).exec();
+    return UserModel.findOne({_id: new Types.ObjectId(id)}).exec();
   }
 
-  update(updateUserDto: UpdateUserDto) {
-    const userModel = new this.userModel(updateUserDto);
-    return userModel.updateOne(updateUserDto);
+  async update(updateUserDto: UpdateUserDto) {
+    return await UserModel.updateOne(
+      {_id: new Types.ObjectId(updateUserDto._id)},
+      {$set: updateUserDto}
+    ).exec();
   }
 
-  remove(id: string) {
-    return this.userModel.deleteOne({_id: id}).exec();
+  async remove(id: string) {
+    return await UserModel.deleteOne({_id: new Types.ObjectId(id)}).exec();
   }
 }

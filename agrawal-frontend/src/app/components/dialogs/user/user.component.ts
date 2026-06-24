@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { employedTypeList, genderList } from 'src/app/constants/shaadi.constants';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -15,6 +16,11 @@ export class UserComponent {
     { name: '_id', label: 'ID', type: 'text', space: 0 },
     { name: 'name', label: 'Name', type: 'text', space: 2, validators: [Validators.required]},
     { name: 'phone', label: 'Phone', type: 'text', space: 2, validators: [Validators.required]},
+    { name: 'gender', label: 'Gender', type: 'select', space: 2, options: genderList.map(g => ({ label: g, value: g })), validators: [Validators.required]},
+    { name: 'dob', label: 'Date of Birth', type: 'date', space: 2},
+    { name: 'employedType', label: 'Employment Type', type: 'select', space: 2, options: employedTypeList.map(g => ({ label: g, value: g }))},
+    { name: 'jobTitle', label: 'Job/Occupation Title', type: 'text', space: 2, placeholder:"e.g. Software Engineer (TCS) or Balaji General Store"},
+    { name: 'jobDescription', label: 'Job/Occupation Description', type: 'textarea', space: 2, placeholder:"e.g. Software Engineer (TCS) or Grocery, Furniture business, Kids readymade garments, etc."},
   ];
   legacyFields = [
     { name: 'village', label: 'Village', type: 'text', space: 2 },

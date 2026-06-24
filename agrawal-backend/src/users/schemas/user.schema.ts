@@ -2,8 +2,6 @@
 import * as mongoose from 'mongoose';
 import { UserAddressDto } from '../dto/address.dto';
 
-
-
 export const AddressSchema = new mongoose.Schema({
   houseNo: String,
   street: String,
@@ -22,5 +20,18 @@ export const UserAddressSchema = new mongoose.Schema({
 export const UserSchema = new mongoose.Schema({
   name: String,
   phone: String,
-  address: UserAddressSchema
+  photoUrl: String,
+  email: String,
+  googleId: String,
+  role: String,
+  address: UserAddressSchema,
+
+  gender: String,
+  dob: Date,
+  employedType: String,
+  jobTitle: String,
+  jobDescription: String
+
 });
+
+export const UserModel = mongoose.model('users', UserSchema);

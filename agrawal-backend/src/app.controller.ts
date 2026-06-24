@@ -9,4 +9,10 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get('health-check')
+  async getHealthCheck() {
+    // await new Promise(resolve => setTimeout(resolve, 5000)); // Simulate some async operation
+    return {status: 'ok', message: 'Health check successful'};
+  }
 }

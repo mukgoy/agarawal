@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'agrawal-frontend';
+  ngOnInit() {
+    document.getElementById('startup-loader')?.remove();
+  }
 }
