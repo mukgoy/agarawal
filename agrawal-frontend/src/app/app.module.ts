@@ -51,6 +51,8 @@ import { DatePipe } from '@angular/common';
 import { GameMainComponent } from './components/games/game-main/game-main.component';
 import { GameAddComponent } from './components/games/game-add/game-add.component';
 import { appInitializer } from './services/config.service';
+import { HeightPipe } from './pipes/height.pipe';
+import { WeightPipe } from './pipes/weight.pipe';
 
 
 const matModules = [
@@ -96,7 +98,9 @@ const matModules = [
     SortProfileComponent,
     AgePipe,
     GameMainComponent,
-    GameAddComponent
+    GameAddComponent,
+    HeightPipe,
+    WeightPipe
   ],
   imports: [
     BrowserModule,

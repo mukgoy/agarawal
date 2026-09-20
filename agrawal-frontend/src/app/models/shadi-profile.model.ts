@@ -10,8 +10,8 @@ export class PersonalDetailModel {
   city = '';
   manglik = '';
   gotra = '';
-  height = '';
-  weight = '';
+  height = 0;
+  weight = 0;
 
   education = '';
   jobTitle = '';
@@ -33,8 +33,8 @@ export class PersonalDetailModel {
     this.city = obj?.city?.toString() || '';
     this.manglik = obj?.manglik?.toString() || '';
     this.gotra = obj?.gotra?.toString() || '';
-    this.height = obj?.height?.toString() || '';
-    this.weight = obj?.weight?.toString() || '';
+    this.height = obj?.height || 0;
+    this.weight = obj?.weight || 0;
     this.education = obj?.education?.toString() || '';
     this.jobTitle = obj?.jobTitle?.toString() || '';
     this.income = obj?.income?.toString() || '';
